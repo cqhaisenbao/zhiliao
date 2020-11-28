@@ -8,8 +8,8 @@
 <script lang="ts">
     import {defineComponent} from 'vue';
     import 'bootstrap/dist/css/bootstrap.min.css';
-    import ColumnList, {ColumnProps} from './components/ColumnList.vue';
-    import GlobalHeader, {UserProps} from './components/GlobalHeader.vue';
+    import ColumnList from './components/ColumnList.vue';
+    import GlobalHeader from './components/GlobalHeader.vue';
 
     const currentUser: UserProps = {
         isLogin: true,
@@ -22,7 +22,7 @@
             title: 'test1专栏',
             description: '第一个测试专栏',
             avatar:
-                'http://vue-maker.oss-cn-hangzhou.aliyuncs.com/vue-marker/5f3e3a17c305b1070f455202.jpg?x-oss-process=image/resize,m_pad,h_50,w_50',
+                'http://n.sinaimg.cn/front/330/w590h540/20181114/cl4l-hnvukfe9634590.jpg',
         },
         {
             id: 2,
@@ -57,4 +57,11 @@
         },
     });
 </script>
+
+<style>
+    .container {
+        padding: 0;
+        margin: 0;
+    }
+</style>
 

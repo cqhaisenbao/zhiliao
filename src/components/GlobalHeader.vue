@@ -22,11 +22,11 @@
     import Dropdown from './Dropdown.vue';
     import DropdownItem from '@/components/DropdownItem.vue';
 
-    export interface UserProps {
-        isLogin: boolean;
-        name?: string;
-        id?: number;
-    }
+    // export interface UserProps {
+    //     isLogin: boolean;
+    //     name?: string;
+    //     id?: number;
+    // }
 
     export default defineComponent({
         name: 'GlobalHeader',
