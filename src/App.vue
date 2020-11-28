@@ -13,7 +13,7 @@
 
     const currentUser: UserProps = {
         isLogin: true,
-        name:'frank'
+        name: 'frank'
     };
 
     const testData: ColumnProps[] = [
