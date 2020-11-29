@@ -5,9 +5,7 @@
                 <div class="card-body text-center">
                     <img :src="column.avatar" alt="column.title" class="rounded-circle border border-light w-25 mb-4"/>
                     <h5 class="card-title">{{ column.title }}</h5>
-                    <p class="card-text text-truncate text-left mt-3">
-                        {{ column.description }}
-                    </p>
+                    <p class="card-text text-truncate text-left mt-3">{{ column.description }}</p>
                     <a href="#" class="btn btn-outline-primary">进入专栏</a>
                 </div>
             </div>

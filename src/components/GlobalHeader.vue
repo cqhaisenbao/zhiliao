@@ -18,6 +18,7 @@
 </template>
 
 <script lang="ts">
+
     import {defineComponent, PropType} from 'vue';
     import Dropdown from './Dropdown.vue';
     import DropdownItem from '@/components/DropdownItem.vue';
@@ -40,4 +41,6 @@
     });
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped>
+
+</style>

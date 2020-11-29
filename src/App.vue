@@ -1,14 +1,23 @@
 <template>
     <div class="container">
         <global-header :user="currentUser"></global-header>
-        <column-list :list="list"/>
+        <form action="">
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">邮箱地址</label>
+                <validate-input :rules="emailRules"></validate-input>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">密码</label>
+                <input type="password" class="form-control" id="exampleInputPassword1">
+            </div>
+        </form>
     </div>
 </template>
 
 <script lang="ts">
     import {defineComponent} from 'vue';
     import 'bootstrap/dist/css/bootstrap.min.css';
-    import ColumnList from './components/ColumnList.vue';
+    import ValidateInput, {RulesProp} from '@/components/ValidateInput.vue';
     import GlobalHeader from './components/GlobalHeader.vue';
 
     const currentUser: UserProps = {
@@ -48,20 +57,22 @@
 
     export default defineComponent({
         name: 'App',
-        components: {ColumnList, GlobalHeader},
+        components: {GlobalHeader, ValidateInput},
         setup() {
-            return {
-                list: testData,
-                currentUser,
-            };
+            const emailRules: RulesProp = [
+                {type: 'required', message: '电子邮箱地址不能为空'},
+                {type: 'email', message: '请输入正确的电子邮箱格式'}
+            ];
+          
+            return {list: testData, currentUser, emailRules};
         },
     });
 </script>
 
 <style>
-    .container {
+
+    .row {
         padding: 0;
         margin: 0;
     }
 </style>
-
