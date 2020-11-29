@@ -10,17 +10,34 @@
 </template>
 
 <script lang="ts">
-    import {defineComponent} from 'vue';
+    import {defineComponent, onUnmounted} from 'vue';
+    import mitt from 'mitt';
 
+    type ValidateFunc = () => boolean
+
+    export const emitter = mitt();
     export default defineComponent({
         name: 'ValidateForm',
         // emits: ['form-submit'],
         setup(props, context) {
+            let funcArr: ValidateFunc[] = [];
             const submitForm = () => {
-                context.emit('form-submit', false);
+                const result = funcArr.map(func => func()).every(result => result);
+                context.emit('form-submit', result);
             };
-            return {submitForm};
-        }
+            const callback = (func: ValidateFunc) => {
+                funcArr.push(func);
+            };
+            emitter.on('form-item-created', callback);
+            onUnmounted(() => {
+                emitter.off('form-item-created', callback);
+                funcArr = [];
+            });
+            const add = () => {
+                console.log('我是通过ref调用的');
+            };
+            return {submitForm, add};
+        },
     });
 </script>
 

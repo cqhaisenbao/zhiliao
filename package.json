@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "bootstrap": "^5.0.0-alpha3",
+    "mitt": "^1.2.0",
     "sass-loader": "^10.1.0",
     "vue": "^3.0.0"
   },

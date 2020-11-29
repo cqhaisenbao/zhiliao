@@ -1,12 +1,11 @@
 <template>
     <div class="container">
         <global-header :user="currentUser"></global-header>
-        <validate-form @form-submit="onFormSubmit">
+        <validate-form ref="formRef" @form-submit="onFormSubmit">
             <div class="mb-3">
                 <label class="form-label">邮箱地址</label>
-                <validate-input :rules="emailRules" v-model="emailVal" placeholder="请在输入邮箱"
-                                type="text"></validate-input>
-                {{emailVal}}
+                <validate-input :rules="emailRules" v-model="emailVal" placeholder="请输入邮箱地址"
+                                type="text" ref="inputRef"></validate-input>
             </div>
             <div class="mb-3">
                 <label class="form-label">密码</label>
@@ -66,6 +65,8 @@
         name: 'App',
         components: {GlobalHeader, ValidateInput, ValidateForm},
         setup() {
+            const inputRef = ref<any>();
+            const formRef = ref<any>();
             const emailVal = ref('');
             const passwordVal = ref('');
             const emailRules: RulesProp = [
@@ -78,8 +79,22 @@
             ];
             const onFormSubmit = (result: boolean) => {
                 console.log(result);
+                if (result !== true) {
+                    //直接就可以拿到啊
+                    console.log(inputRef.value.validateInput());
+                }
             };
-            return {list: testData, currentUser, emailRules, emailVal, passwordRules, passwordVal, onFormSubmit};
+            return {
+                list: testData,
+                currentUser,
+                emailRules,
+                emailVal,
+                passwordRules,
+                passwordVal,
+                onFormSubmit,
+                inputRef,
+                formRef
+            };
         },
     });
 </script>

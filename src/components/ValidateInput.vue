@@ -7,7 +7,8 @@
 </template>
 
 <script lang="ts">
-    import {defineComponent, reactive, PropType} from 'vue';
+    import {defineComponent, reactive, PropType, onMounted, watch} from 'vue';
+    import {emitter} from './ValidateForm.vue';
 
     const emailReg = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
@@ -54,8 +55,16 @@
                         return passed;
                     });
                     inputRef.error = !allPassed;
+                    return allPassed;
                 }
+                return true;
             };
+            // watch(inputRef, () => {
+            //     emitter.emit('form-item-created', validateInput);
+            // });
+            onMounted(() => {
+                emitter.emit('form-item-created', validateInput);
+            });
             return {inputRef, validateInput, updateValue};
         }
     });
