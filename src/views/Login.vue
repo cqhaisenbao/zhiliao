@@ -4,7 +4,8 @@
         <validate-form @form-submit="onFormSubmit">
             <div class="mb-3">
                 <label class="form-label">邮箱地址</label>
-                <validate-input :rules="emailRules" v-model="emailVal" placeholder="请输入邮箱地址" type="text" ref="inputRef"/>
+                <validate-input :rules="emailRules" v-model="emailVal" placeholder="请输入邮箱地址" type="text"
+                                ref="inputRef"/>
             </div>
             <div class="mb-3">
                 <label class="form-label">密码</label>
@@ -19,6 +20,7 @@
 
 <script lang="ts">
     import {defineComponent, ref} from 'vue';
+    import {useRouter} from 'vue-router';
     import ValidateInput from '../components/ValidateInput.vue';
     import ValidateForm from '../components/ValidateForm.vue';
 
@@ -26,6 +28,7 @@
         name: 'Login',
         components: {ValidateInput, ValidateForm},
         setup() {
+            const router = useRouter();
             const emailVal = ref('');
             const emailRules: RulesProp = [
                 {type: 'required', message: '电子邮箱地址不能为空'},
@@ -37,10 +40,7 @@
             ];
             const onFormSubmit = (result: boolean) => {
                 if (result) {
-                    const payload = {
-                        email: emailVal.value,
-                        password: passwordVal.value
-                    };
+                    router.push('/column/1');
                 }
             };
             return {emailRules, emailVal, passwordVal, passwordRules, onFormSubmit};

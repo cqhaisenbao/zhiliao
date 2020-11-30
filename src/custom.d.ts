@@ -17,3 +17,24 @@ interface RuleProp {
 }
 
 type RulesProp = RuleProp[]
+
+interface PostProps {
+    id: number;
+    title: string;
+    content: string;
+    image?: string;
+    createdAt: string;
+    columnId: number;
+}
+
+interface UserProps {
+    isLogin: boolean;
+    name?: string;
+    id?: string;
+}
+
+interface GlobalDataProps {
+    columns: ColumnProps[]
+    posts: PostProps[]
+    user: UserProps;
+}
