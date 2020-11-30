@@ -1,19 +1,18 @@
 <template>
     <div class="create-post-page">
         <h4>新建文章</h4>
-        <validate-form >
+        <validate-form>
             <div class="mb-3">
                 <label class="form-label">文章标题：</label>
-                <validate-input :rules="titleRules" v-model="titleVal"
-                                placeholder="请输入文章标题" type="text"/>
+                <validate-input :rules="titleRules" v-model="titleVal" placeholder="请输入文章标题"/>
             </div>
             <div class="mb-3">
                 <label class="form-label">文章详情：</label>
-                <validate-input rows="10" type="password" placeholder="请输入文章详情"
-                                :rules="contentRules" v-model="contentVal"/>
+                <validate-input tag="textarea" rows="10" placeholder="请输入文章详情" :rules="contentRules"
+                                v-model="contentVal"/>
             </div>
             <template #submit>
-                <button class="btn btn-primary btn-large">发表文章</button>
+                <button @click="onFormSubmit" class="btn btn-primary btn-large">发表文章</button>
             </template>
         </validate-form>
     </div>
@@ -21,24 +20,40 @@
 
 <script lang="ts">
     import {defineComponent, ref} from 'vue';
-    import { useRoute} from 'vue-router';
+    import {useRouter} from 'vue-router';
+    import {useStore} from 'vuex';
     import ValidateInput from '../components/ValidateInput.vue';
     import ValidateForm from '../components/ValidateForm.vue';
-    import  {titleRules,contentRules} from '@/rules/rules'
+    import {titleRules, contentRules} from '@/rules/rules';
 
     export default defineComponent({
         name: 'Login',
         components: {ValidateInput, ValidateForm},
         setup() {
-            const uploadedData = ref();
             const titleVal = ref('');
-            const route = useRoute();
-            const isEditMode = !!route.query.id;
             const contentVal = ref('');
-
-            return {
-                titleRules, titleVal, contentVal, contentRules, uploadedData, isEditMode
+            const store = useStore<GlobalDataProps>();
+            const router = useRouter();
+            const onFormSubmit = (result: boolean) => {
+                if (result) {
+                    const {columnId} = store.state.user;
+                    if (columnId) {
+                        console.log(columnId);
+                        const newPost: PostProps = {
+                            id: Math.random(),
+                            title: titleVal.value,
+                            content: contentVal.value,
+                            columnId,
+                            createdAt: new Date().toLocaleString()
+                        };
+                        console.log(newPost);
+                        store.commit('createPost', newPost);
+                        router.push(`/column/${ columnId }`);
+                    }
+                }
             };
+
+            return {titleRules, titleVal, contentVal, contentRules, onFormSubmit};
         }
     });
 </script>

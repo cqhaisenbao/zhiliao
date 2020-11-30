@@ -1,7 +1,9 @@
 <template>
     <div class="validate-input-container pb-3">
-        <input class="form-control" :class="{'is-invalid':inputRef.error}"
+        <input v-if="tag !== 'textarea'" class="form-control" :class="{'is-invalid':inputRef.error}"
                :value="inputRef.val" @input="updateValue" @blur="validateInput" :="$attrs">
+        <textarea v-else class="form-control" :class="{'is-invalid':inputRef.error}" :value="inputRef.val"
+                  @blur="validateInput" @change="updateValue" :="$attrs"></textarea>
         <span v-if="inputRef.error" class="invalid-feedback">{{inputRef.message}}</span>
     </div>
 </template>
@@ -9,14 +11,17 @@
 <script lang="ts">
     import {defineComponent, reactive, PropType, onMounted} from 'vue';
     import {emitter} from './ValidateForm.vue';
-
-    const emailReg = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    import {emailReg, TagType} from '../rules/rules';
 
     export default defineComponent({
         name: 'ValidateInput',
         props: {
             rules: Array as PropType<RulesProp>,
-            modelValue: String
+            modelValue: String,
+            tag: {
+                type: String as PropType<TagType>,
+                default: 'input'
+            }
         },
         inheritAttrs: false,
         setup(props, context) {
@@ -52,9 +57,7 @@
                 }
                 return true;
             };
-            // watch(inputRef, () => {
-            //     emitter.emit('form-item-created', validateInput);
-            // });
+
             onMounted(() => {
                 emitter.emit('form-item-created', validateInput);
             });

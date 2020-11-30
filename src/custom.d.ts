@@ -31,6 +31,7 @@ interface UserProps {
     isLogin: boolean;
     name?: string;
     id?: string;
+    columnId?: number;
 }
 
 interface GlobalDataProps {

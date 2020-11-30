@@ -12,6 +12,11 @@ export const emailRules: RulesProp = [
     {type: 'email', message: '请输入正确的电子邮箱格式'}
 ];
 
+export const emailReg = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
 export const passwordRules: RulesProp = [
     {type: 'required', message: '密码不能为空'}
 ];
+
+export type TagType = 'input' | 'textarea'
+

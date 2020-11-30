@@ -1,6 +1,6 @@
 <template>
     <nav class="navbar navbar-dark bg-primary justify-content-between mb-4 px-4">
-        <router-link to="/" class="navbar-brand">知了专栏——我的码鸭</router-link>
+        <router-link to="/" class="navbar-brand">我的码鸭</router-link>
         <ul v-if="!currentUser.isLogin" class="list-inline mb-0">
             <li class="list-inline-item "><router-link to="/login">
                 <a href="#" class=" btn btn-outline-light my-2 ">登陆</a>

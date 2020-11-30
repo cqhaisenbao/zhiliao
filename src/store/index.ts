@@ -5,12 +5,15 @@ const store = createStore<GlobalDataProps>({
     state: {
         columns: testData,
         posts: testPosts,
-        user: {isLogin: false}
+        user: {isLogin: true, name: 'frank', columnId: 2}
     },
     mutations: {
         login(state) {
             state.user = {isLogin: true, name: 'jack'};
         },
+        createPost(state, newPost) {
+            state.posts.push(newPost);
+        }
     },
     getters: {
         biggerColumnsLen(state) {

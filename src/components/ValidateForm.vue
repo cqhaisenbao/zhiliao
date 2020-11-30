@@ -2,7 +2,9 @@
     <form class="validata-form-container">
         <slot></slot>
         <div class="submit-area" @click.prevent="submitForm">
-            <span class="btn btn-danger">提交</span>
+            <slot name="submit">
+                <button type="submit" class="btn btn-primary">提交</button>
+            </slot>
         </div>
     </form>
 </template>
@@ -36,6 +38,10 @@
     });
 </script>
 
-<style lang="scss" scoped>
-
+<style scoped>
+.submit-area{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
 </style>
