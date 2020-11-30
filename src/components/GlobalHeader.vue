@@ -1,13 +1,15 @@
 <template>
     <nav class="navbar navbar-dark bg-primary justify-content-between mb-4 px-4">
-        <router-link to="/" class="navbar-brand" >知了专栏——我的码鸭</router-link>
-        <ul v-if="!user.isLogin" class="list-inline mb-0">
-            <li class="list-inline-item "><a href="#" class=" btn btn-outline-light my-2 ">登陆</a></li>
+        <router-link to="/" class="navbar-brand">知了专栏——我的码鸭</router-link>
+        <ul v-if="!currentUser.isLogin" class="list-inline mb-0">
+            <li class="list-inline-item "><router-link to="/login">
+                <a href="#" class=" btn btn-outline-light my-2 ">登陆</a>
+            </router-link></li>
             <li class="list-inline-item "><a href="#" class=" btn btn-outline-light my-2 ">注册</a></li>
         </ul>
         <ul v-else class="list-inline mb-0">
             <li class="list-inline-item">
-                <dropdown :title="`你好 ${user.name}`">
+                <dropdown :title="`你好 ${currentUser.name}`">
                     <dropdown-item><a href="#" class="dropdown-item">新建文章</a></dropdown-item>
                     <dropdown-item disabled><a href="#" class="dropdown-item">编辑资料</a></dropdown-item>
                     <dropdown-item><a href="#" class="dropdown-item">退出登录</a></dropdown-item>
@@ -19,20 +21,25 @@
 
 <script lang="ts">
 
-    import {defineComponent, PropType} from 'vue';
+    import {defineComponent,computed} from 'vue';
     import Dropdown from './Dropdown.vue';
-    import {createStore} from 'vuex'
+    import {useStore} from 'vuex';
     import DropdownItem from '@/components/DropdownItem.vue';
 
     export default defineComponent({
         name: 'GlobalHeader',
         components: {Dropdown, DropdownItem},
-        props: {
-            user: {
-                type: Object as PropType<UserProps>,
-                required: true,
-            },
-        },
+        // props: {
+        //     user: {
+        //         type: Object as PropType<UserProps>,
+        //         required: true,
+        //     },
+        // },
+        setup() {
+            const store = useStore();
+            const currentUser = computed(() => store.state.user);
+            return {currentUser};
+        }
     });
 </script>
 
