@@ -30,7 +30,8 @@
         setup() {
             const store = useStore<GlobalDataProps>();
             const list = computed(() => store.state.columns);
-            return {list};
+            const biggerColumnsLen = computed(() => store.getters.biggerColumnsLen);
+            return {list,biggerColumnsLen};
         }
     });
 </script>

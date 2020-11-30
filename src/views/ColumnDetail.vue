@@ -14,10 +14,9 @@
 </template>
 
 <script lang="ts">
-    import {defineComponent} from 'vue';
+    import {defineComponent, computed} from 'vue';
     import {useRoute} from 'vue-router';
     import {useStore} from 'vuex';
-    import {testPosts, testData} from '@/testData';
     import PostList from '@/components/PostList.vue';
 
     export default defineComponent({
@@ -25,11 +24,9 @@
         name: 'ColumnDetail',
         setup() {
             const store = useStore<GlobalDataProps>();
-            const columnList = store.state.columns;
-            const postList = store.state.posts;
             const currentId = +useRoute().params.id;
-            const column = columnList.find(c => c.id === currentId);
-            const list = postList.filter(post => post.columnId === currentId);
+            const column = computed(() => store.getters.getColumnById(currentId));
+            const list = computed(() => store.getters.getPostByCid(currentId));
             return {column, list};
         }
     });
