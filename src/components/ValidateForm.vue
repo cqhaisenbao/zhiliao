@@ -2,9 +2,7 @@
     <form class="validata-form-container">
         <slot></slot>
         <div class="submit-area" @click.prevent="submitForm">
-            <slot name="submit">
-                <button type="submit" class="btn btn-primary">提交</button>
-            </slot>
+            <span class="btn btn-danger">提交</span>
         </div>
     </form>
 </template>
@@ -33,10 +31,7 @@
                 emitter.off('form-item-created', callback);
                 funcArr = [];
             });
-            const add = () => {
-                console.log('我是通过ref调用的');
-            };
-            return {submitForm, add};
+            return {submitForm};
         },
     });
 </script>

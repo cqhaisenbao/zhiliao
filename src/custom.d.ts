@@ -10,3 +10,10 @@ interface UserProps {
     name?: string;
     id?: number;
 }
+
+interface RuleProp {
+    type: 'required' | 'email' | 'password';
+    message: string;
+}
+
+type RulesProp = RuleProp[]
