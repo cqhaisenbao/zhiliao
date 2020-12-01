@@ -40,10 +40,10 @@
                     if (columnId) {
                         console.log(columnId);
                         const newPost: PostProps = {
-                            id: Math.random(),
+                            _id: Math.random().toString(),
                             title: titleVal.value,
                             content: contentVal.value,
-                            columnId,
+                            column: columnId.toString(),
                             createdAt: new Date().toLocaleString()
                         };
                         console.log(newPost);

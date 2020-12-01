@@ -5,32 +5,28 @@ interface ColumnProps {
     description: string;
 }
 
-interface UserProps {
-    isLogin: boolean;
-    name?: string;
-    id?: number;
-}
-
-interface RuleProp {
-    type: 'required' | 'email' | 'password';
-    message: string;
-}
-
 interface ImageProps {
     _id?: string,
     url?: string,
     createdAt?: string
 }
 
+interface PostProps {
+    _id: string;
+    title: string;
+    excerpt?: string;
+    content?: string;
+    image?: ImageProps;
+    createdAt: string;
+    column: string;
+}
+
+
 type RulesProp = RuleProp[]
 
-interface PostProps {
-    id: number;
-    title: string;
-    content: string;
-    image?: string;
-    createdAt: string;
-    columnId: number;
+interface RuleProp {
+    type: 'required' | 'email' | 'password';
+    message: string;
 }
 
 interface UserProps {

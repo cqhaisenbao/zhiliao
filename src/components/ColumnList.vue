@@ -34,9 +34,9 @@
                             url: require('@/assets/man.png')
                         };
                     } else {
-                        column.avatar.url = column.avatar.url + '?x-oss-process=image/resize,m_pad,h_50,w_50'
+                        column.avatar.url = column.avatar.url + '?x-oss-process=image/resize,m_pad,h_50,w_50';
                     }
-                    return column
+                    return column;
                 });
             });
             return {columnList};
@@ -45,15 +45,9 @@
 </script>
 
 <style scoped>
-    .card-body img{
+    .card-body img {
         width: 50px;
         height: 50px;
     }
-    .card-body p{
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-    }
+
 </style>
