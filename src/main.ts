@@ -6,12 +6,17 @@ import axios from 'axios';
 
 axios.defaults.baseURL = 'http://apis.imooc.com/api/';
 axios.interceptors.request.use(config => {
+    store.commit('setLoading', true);
     config.params = {...config.params, icode: 'CD1DF9C24BFE7760'};
-    if (config.data instanceof FormData){
-        config.data.append('icode','CD1DF9C24BFE7760')
-    }else{
-        config.data={...config.params, icode: 'CD1DF9C24BFE7760'}
+    if (config.data instanceof FormData) {
+        config.data.append('icode', 'CD1DF9C24BFE7760');
+    } else {
+        config.data = {...config.params, icode: 'CD1DF9C24BFE7760'};
     }
+    return config;
+});
+axios.interceptors.response.use(config => {
+    store.commit('setLoading', false);
     return config;
 });
 

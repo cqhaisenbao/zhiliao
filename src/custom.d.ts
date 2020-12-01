@@ -37,6 +37,7 @@ interface UserProps {
 }
 
 interface GlobalDataProps {
+    loading: boolean
     columns: ColumnProps[]
     posts: PostProps[]
     user: UserProps;
