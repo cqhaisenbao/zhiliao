@@ -1,15 +1,17 @@
 <template>
-    <div class="d-flex justify-content-center align-items-center h-100 w-100 loading-container"
-         :style="{backgroundColor: background || ''}">
-        <div class="loading-content">
-            <div class="spinner-border text-primary" role="status"></div>
-            <p v-if="text" class="text-primary big mt-3">{{text}}</p>
+    <teleport to="#back">
+        <div class="d-flex justify-content-center align-items-center h-100 w-100 loading-container"
+             :style="{backgroundColor: background || ''}">
+            <div class="loading-content">
+                <div class="spinner-border text-primary" role="status"></div>
+                <p v-if="text" class="text-primary big mt-3">{{text}}</p>
+            </div>
         </div>
-    </div>
+    </teleport>
 </template>
 
 <script lang="ts">
-    import {defineComponent} from 'vue';
+    import {defineComponent, onUnmounted} from 'vue';
 
     export default defineComponent({
         props: {
@@ -20,6 +22,14 @@
             background: {
                 type: String
             }
+        },
+        setup() {
+            const node = document.createElement('div');
+            node.id = 'back';
+            document.body.appendChild(node);
+            onUnmounted(() => {
+                document.body.removeChild(node);
+            });
         }
     });
 </script>
