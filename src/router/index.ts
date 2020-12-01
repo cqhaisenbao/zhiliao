@@ -21,15 +21,15 @@ const router = createRouter({
             meta: {redirectAlreadyLogin: true}
         },
         {
-            path: '/column/:id',
-            name: 'column',
-            component: ColumnDetail,
-        },
-        {
             path: '/create',
             name: 'create',
             component: CreatePost,
             meta: {requiredLogin: true}
+        },
+        {
+            path: '/column/:id',
+            name: 'column',
+            component: ColumnDetail,
         },
     ]
 });

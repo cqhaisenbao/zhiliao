@@ -1,7 +1,7 @@
 interface ColumnProps {
-    id: number;
+    _id: string;
     title: string;
-    avatar?: string;
+    avatar?: ImageProps;
     description: string;
 }
 
@@ -14,6 +14,12 @@ interface UserProps {
 interface RuleProp {
     type: 'required' | 'email' | 'password';
     message: string;
+}
+
+interface ImageProps {
+    _id?: string,
+    url?: string,
+    createdAt?: string
 }
 
 type RulesProp = RuleProp[]

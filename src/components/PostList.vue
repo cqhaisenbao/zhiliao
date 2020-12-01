@@ -25,7 +25,6 @@
                 type: Array as PropType<PostProps[]>
             }
         },
-
     });
 </script>
 

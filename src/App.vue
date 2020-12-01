@@ -16,8 +16,7 @@
     export default defineComponent({
         name: 'App',
         components: {GlobalHeader, Footer},
-        setup() {
-        }
+
     });
 </script>
 

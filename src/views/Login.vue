@@ -32,7 +32,7 @@
         setup() {
             const router = useRouter();
             const emailVal = ref('');
-            const store = useStore();
+            const store = useStore<GlobalDataProps>();
             const passwordVal = ref('');
             const onFormSubmit = (result: boolean) => {
                 if (result) {
