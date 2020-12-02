@@ -25,6 +25,7 @@
     import {useRouter} from 'vue-router';
     import ValidateInput from '../components/ValidateInput.vue';
     import ValidateForm from '../components/ValidateForm.vue';
+    import createMessage from '@/components/createMessage';
 
     export default defineComponent({
         name: 'Login',
@@ -41,7 +42,10 @@
                         password: passwordVal.value
                     };
                     store.dispatch('loginAndFetch', payload).then(data => {
-                        router.push('/');
+                        createMessage('登录成功 2秒后跳转首页', 'success', 2000);
+                        setTimeout(() => {
+                            router.push('/');
+                        }, 2000);
                     }).catch(e => {
                         console.log(e);
                     });
