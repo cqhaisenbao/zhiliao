@@ -24,6 +24,8 @@ interface PostProps {
 
 type RulesProp = RuleProp[]
 
+type MessageType = 'success' | 'error' | 'default'
+
 interface RuleProp {
     type: 'required' | 'email' | 'password';
     message: string;
