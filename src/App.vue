@@ -32,7 +32,7 @@
                     store.dispatch('fetchCurrentUser');
                 }
             });
-            watch(() => error.value.status, () => {
+            watch(error, () => {
                 const {status, message} = error.value;
                 if (status && message) {
                     createMessage(message, 'error', 3000);

@@ -11,7 +11,7 @@
 <script lang="ts">
     import {defineComponent, reactive, PropType, onMounted} from 'vue';
     import {emitter} from './ValidateForm.vue';
-    import {emailReg, TagType} from '../rules/rules';
+    import {emailReg} from '../rules/rules';
 
     export default defineComponent({
         name: 'ValidateInput',
@@ -46,6 +46,9 @@
                                 break;
                             case 'email':
                                 passed = emailReg.test(inputRef.val);
+                                break;
+                            case 'custom':
+                                passed = rule.validator ? rule.validator() : true;
                                 break;
                             default:
                                 break;

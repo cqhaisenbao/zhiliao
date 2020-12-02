@@ -1,9 +1,10 @@
 <template>
     <teleport to="#message">
-        <div class="alert message-info fixed-top w-50 mx-auto d-flex justify-content-between mt-2" :class="classObject" v-if="isVisible">
+        <div class="alert message-info fixed-top w-50 mx-auto d-flex align-items-center justify-content-between mt-2"
+             :class="classObject" v-if="isVisible">
             <span>{{message}}</span>
             <button type="button" class="close" aria-label="Close" @click.prevent="hide">
-                <span aria-hidden="true">&times;</span>
+                <span class="close" aria-hidden="true">&times;</span>
             </button>
         </div>
     </teleport>
@@ -40,4 +41,10 @@
 
 </script>
 
-
+<style>
+    .close {
+        background: none;
+        border: none;
+        font-size: 25px;
+    }
+</style>

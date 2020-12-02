@@ -18,5 +18,8 @@ export const passwordRules: RulesProp = [
     {type: 'required', message: '密码不能为空'}
 ];
 
-export type TagType = 'input' | 'textarea'
+export const nameRules: RulesProp = [
+    {type: 'required', message: '昵称不能为空'}
+];
+
 

@@ -11,7 +11,7 @@ const createMessage = (message: string, type: MessageType, timeout: number) => {
     messageInstance.mount(mountNode);
     setTimeout(() => {
         messageInstance.unmount(mountNode);
-        document.body.removeChild(mountNode);
+        mountNode.remove();
     }, timeout);
 };
 

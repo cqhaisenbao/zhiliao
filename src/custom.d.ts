@@ -27,8 +27,9 @@ type RulesProp = RuleProp[]
 type MessageType = 'success' | 'error' | 'default'
 
 interface RuleProp {
-    type: 'required' | 'email' | 'password';
+    type: 'required' | 'email' | 'password' | 'custom';
     message: string;
+    validator?: () => boolean
 }
 
 interface UserProps {
@@ -52,3 +53,5 @@ interface GlobalErrorProps {
     status: boolean;
     message?: string;
 }
+
+type TagType = 'input' | 'textarea'
