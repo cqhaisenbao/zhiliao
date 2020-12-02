@@ -42,6 +42,8 @@
                     };
                     store.dispatch('loginAndFetch', payload).then(data => {
                         router.push('/');
+                    }).catch(e => {
+                        console.log(e);
                     });
                 }
             };

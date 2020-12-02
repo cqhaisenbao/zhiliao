@@ -46,7 +46,7 @@ interface GlobalDataProps {
     user: UserProps;
 }
 
-export interface GlobalErrorProps {
+interface GlobalErrorProps {
     status: boolean;
     message?: string;
 }

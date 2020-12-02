@@ -1,6 +1,5 @@
 import {createStore, Commit} from 'vuex';
 import axios from 'axios';
-import {GlobalDataProps} from '@/custom';
 
 //commit是context.commit,所以直接写成{commit}，会自动解构赋值
 const getAndCommit = async (url: string, mutationName: string, commit: Commit) => {
@@ -23,9 +22,6 @@ const store = createStore<GlobalDataProps>({
         user: {isLogin: false}
     },
     mutations: {
-        // login(state) {
-        //     state.user = {isLogin: true, name: 'jack'};
-        // },
         createPost(state, newPost) {
             state.posts.push(newPost);
         },
@@ -40,6 +36,9 @@ const store = createStore<GlobalDataProps>({
         },
         setLoading(state, status) {
             state.loading = status;
+        },
+        setError(state, e: GlobalErrorProps) {
+            state.error = e;
         },
         fetchCurrentUser(state, rawData) {
             state.user = {isLogin: true, ...rawData.data};

@@ -35,22 +35,22 @@
             const store = useStore<GlobalDataProps>();
             const router = useRouter();
             const onFormSubmit = (result: boolean) => {
-                if (result) {
-                    const {columnId} = store.state.user;
-                    if (columnId) {
-                        console.log(columnId);
-                        const newPost: PostProps = {
-                            _id: Math.random().toString(),
-                            title: titleVal.value,
-                            content: contentVal.value,
-                            column: columnId.toString(),
-                            createdAt: new Date().toLocaleString()
-                        };
-                        console.log(newPost);
-                        store.commit('createPost', newPost);
-                        router.push(`/column/${ columnId }`);
-                    }
-                }
+                // if (result) {
+                //     const {columnId} = store.state.user;
+                //     if (columnId) {
+                //         console.log(columnId);
+                //         const newPost: PostProps = {
+                //             _id: Math.random().toString(),
+                //             title: titleVal.value,
+                //             content: contentVal.value,
+                //             column: columnId.toString(),
+                //             createdAt: new Date().toLocaleString()
+                //         };
+                //         console.log(newPost);
+                //         store.commit('createPost', newPost);
+                //         router.push(`/column/${ columnId }`);
+                //     }
+                // }
             };
 
             return {titleRules, titleVal, contentVal, contentRules, onFormSubmit};
