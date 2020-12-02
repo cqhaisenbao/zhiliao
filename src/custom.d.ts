@@ -31,14 +31,22 @@ interface RuleProp {
 
 interface UserProps {
     isLogin: boolean;
-    name?: string;
-    id?: string;
-    columnId?: number;
+    nickName?: string;
+    _id?: string;
+    column?: string;
+    email?: string
 }
 
 interface GlobalDataProps {
+    error: GlobalErrorProps
+    token: string
     loading: boolean
     columns: ColumnProps[]
     posts: PostProps[]
     user: UserProps;
+}
+
+export interface GlobalErrorProps {
+    status: boolean;
+    message?: string;
 }

@@ -11,10 +11,13 @@ axios.interceptors.request.use(config => {
     if (config.data instanceof FormData) {
         config.data.append('icode', 'CD1DF9C24BFE7760');
     } else {
-        config.data = {...config.params, icode: 'CD1DF9C24BFE7760'};
+        config.data = {...config.data, icode: 'CD1DF9C24BFE7760'};
     }
     return config;
+}, err => {
+    return Promise.reject(err);
 });
+
 axios.interceptors.response.use(config => {
     store.commit('setLoading', false);
     return config;

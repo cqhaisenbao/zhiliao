@@ -8,20 +8,28 @@
 </template>
 
 <script lang="ts">
-    import {defineComponent, computed} from 'vue';
+    import {defineComponent, computed, onMounted} from 'vue';
     import {createStore, useStore} from 'vuex';
     import 'bootstrap/dist/css/bootstrap.min.css';
     import GlobalHeader from './components/GlobalHeader.vue';
     import Footer from '@/components/Footer.vue';
     import Loader from '@/components/Loader.vue';
+    import axios from 'axios';
 
     export default defineComponent({
         name: 'App',
         components: {GlobalHeader, Footer, Loader},
         setup() {
-            const store = useStore();
-            const currentUser = computed(() => {store.state.user;});
+            const store = useStore<GlobalDataProps>();
+            const currentUser = computed(() => store.state.user);
             const isLoading = computed(() => store.state.loading);
+            const token = computed(() => store.state.token);
+            onMounted(() => {
+                if (!currentUser.value.isLogin && token.value) {
+                    axios.defaults.headers.common.Authorization = `Bearer ${ token.value }`;
+                    store.dispatch('fetchCurrentUser');
+                }
+            });
             return {isLoading, currentUser};
         }
     });
