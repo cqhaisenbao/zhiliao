@@ -29,6 +29,7 @@
 <script lang="ts">
     import {defineComponent, reactive} from 'vue';
     import {useRouter} from 'vue-router';
+    import {useStore} from 'vuex';
     import axios from 'axios';
     import ValidateInput from '../components/ValidateInput.vue';
     import ValidateForm from '../components/ValidateForm.vue';
@@ -46,6 +47,7 @@
                 repeatPassword: ''
             });
             const router = useRouter();
+            const store = useStore<GlobalDataProps>();
 
             const repeatPasswordRules: RulesProp = [
                 {type: 'required', message: '重复密码不能为空'},
@@ -63,7 +65,8 @@
                         nickName: formData.nickName
                     };
                     axios.post('/users/', payload).then(data => {
-                        createMessage('注册成功 正在跳转登录页面', 'success', 3000);
+                        store.dispatch('loginAndFetch', payload);
+                        createMessage('注册成功 正在跳转首页', 'success', 3000);
                         setTimeout(() => {
                             router.push('/login');
                         }, 3000);

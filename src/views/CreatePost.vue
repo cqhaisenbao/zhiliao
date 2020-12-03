@@ -1,7 +1,8 @@
 <template>
     <div class="create-post-page">
         <h4>新建文章</h4>
-        <validate-form>
+        <input type="file" name="file" @change.prevent="handleFileChange"/>
+        <validate-form @form-submit="onFormSubmit">
             <div class="mb-3">
                 <label class="form-label">文章标题：</label>
                 <validate-input :rules="titleRules" v-model="titleVal" placeholder="请输入文章标题"/>
@@ -22,6 +23,7 @@
     import {defineComponent, ref} from 'vue';
     import {useRouter} from 'vue-router';
     import {useStore} from 'vuex';
+    import axios from 'axios';
     import ValidateInput from '../components/ValidateInput.vue';
     import ValidateForm from '../components/ValidateForm.vue';
     import {titleRules, contentRules} from '@/rules/rules';
@@ -35,25 +37,35 @@
             const store = useStore<GlobalDataProps>();
             const router = useRouter();
             const onFormSubmit = (result: boolean) => {
-                // if (result) {
-                //     const {columnId} = store.state.user;
-                //     if (columnId) {
-                //         console.log(columnId);
-                //         const newPost: PostProps = {
-                //             _id: Math.random().toString(),
-                //             title: titleVal.value,
-                //             content: contentVal.value,
-                //             column: columnId.toString(),
-                //             createdAt: new Date().toLocaleString()
-                //         };
-                //         console.log(newPost);
-                //         store.commit('createPost', newPost);
-                //         router.push(`/column/${ columnId }`);
-                //     }
-                // }
+                if (result) {
+                    const {column} = store.state.user;
+                    if (column) {
+                        const newPost: PostProps = {
+                            title: titleVal.value,
+                            content: contentVal.value,
+                            column
+                        };
+                        store.commit('createPost', newPost);
+                        router.push(`/column/${ column }`);
+                    }
+                }
+            };
+            const handleFileChange = (e: Event) => {
+                const target = e.target as HTMLInputElement;
+                const files = target.files;
+                if (files) {
+                    const uploadedFile = files[0];
+                    const formData = new FormData();
+                    formData.append(uploadedFile.name, uploadedFile);
+                    axios.post('/upload', formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    }).then(res => console.log(res)).catch(err => console.log(err));
+                }
             };
 
-            return {titleRules, titleVal, contentVal, contentRules, onFormSubmit};
+            return {titleRules, titleVal, contentVal, contentRules, onFormSubmit, handleFileChange};
         }
     });
 </script>

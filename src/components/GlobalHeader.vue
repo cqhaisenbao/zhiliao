@@ -16,7 +16,7 @@
                         <router-link to="/create" class="dropdown-item">新建文章</router-link>
                     </dropdown-item>
                     <dropdown-item disabled><a href="#" class="dropdown-item">编辑资料</a></dropdown-item>
-                    <dropdown-item><a href="#" class="dropdown-item">退出登录</a></dropdown-item>
+                    <dropdown-item @click="clear"><a href="#" class="dropdown-item">退出登录</a></dropdown-item>
                 </dropdown>
             </li>
         </ul>
@@ -42,7 +42,10 @@
         setup() {
             const store = useStore();
             const user = computed(() => store.state.user);
-            return {user};
+            const clear = () => {
+                window.localStorage.clear();
+            };
+            return {user, clear};
         }
     });
 </script>

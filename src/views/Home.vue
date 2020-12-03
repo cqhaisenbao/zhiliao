@@ -14,6 +14,7 @@
         <button class="btn btn-outline-primary mt-2 mb-5 mx-auto btn-block w-25" @click="loadMorePage">
             加载更多
         </button>
+        <Uploader action="/upload"></Uploader>
     </div>
 </template>
 
@@ -21,11 +22,12 @@
     import {defineComponent, computed, onMounted} from 'vue';
     import {useStore} from 'vuex';
     import ColumnList from '../components/ColumnList.vue';
+    import Uploader from '../components/Uploader.vue'
 
     export default defineComponent({
         name: 'Home',
         components: {
-            ColumnList
+            ColumnList,Uploader
         },
         setup() {
             const store = useStore<GlobalDataProps>();

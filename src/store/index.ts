@@ -1,4 +1,4 @@
-import {createStore, Commit} from 'vuex';
+import {Commit, createStore} from 'vuex';
 import axios from 'axios';
 
 //commit是context.commit,所以直接写成{commit}，会自动解构赋值
@@ -70,7 +70,7 @@ const store = createStore<GlobalDataProps>({
             return dispatch('login', loginData).then(() => {
                 return dispatch('fetchCurrentUser');
             });
-        }
+        },
     },
     getters: {
         getColumnById: (state) => (id: string) => {
