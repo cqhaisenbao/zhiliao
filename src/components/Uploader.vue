@@ -26,7 +26,10 @@
                 type: Function as PropType<CheckFunction>
             }
         },
-        setup(props) {
+        // emits: ['file-uploaded', 'file-uploaded-error'],
+        setup(props, context) {
+            console.log({...props});
+            console.log({...context.attrs});
             const fileInput = ref<null | HTMLInputElement>(null);
             const fileStatus = ref<UploadStatus>('ready');
             const triggerUpload = () => {
@@ -51,9 +54,12 @@
                             'Content-Type': 'multipart/form-data'
                         }
                     }).then(res => {
-                        console.log(res.data);
                         fileStatus.value = 'success';
-                    }).catch(() => fileStatus.value = 'error').finally(() => {
+                        context.emit('file-uploaded', res.data);
+                    }).catch((err) => {
+                        fileStatus.value = 'error';
+                        context.emit('file-uploaded-error', {err});
+                    }).finally(() => {
                         if (fileInput.value) {
                             fileInput.value.value = '';
                         }

@@ -21,6 +21,11 @@ interface PostProps {
     column: string;
 }
 
+interface ResponseType<P = {}> {
+    code: number;
+    msg: string;
+    data: P;
+}
 
 type RulesProp = RuleProp[]
 
@@ -52,6 +57,12 @@ interface GlobalDataProps {
 interface GlobalErrorProps {
     status: boolean;
     message?: string;
+}
+
+interface ResponseType<P = {}> {
+    code: number;
+    msg: string;
+    data: P;
 }
 
 type TagType = 'input' | 'textarea'
