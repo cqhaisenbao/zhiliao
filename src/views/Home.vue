@@ -14,7 +14,12 @@
         <button class="btn btn-outline-primary mt-2 mb-5 mx-auto btn-block w-25" @click="loadMorePage">
             加载更多
         </button>
-        <Uploader action="/upload" :beforeUpload="beforeUpload" @file-uploaded="onFileUploaded"></Uploader>
+        <Uploader action="/upload" :beforeUpload="beforeUpload" @file-uploaded="onFileUploaded">
+            <button class="btn btn-primary">点击上传</button>
+            <template #uploaded="dataProps">
+                <img :src="dataProps.uploadedData.data.url" width="500">
+            </template>
+        </Uploader>
     </div>
 </template>
 
