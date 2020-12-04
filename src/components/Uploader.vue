@@ -16,48 +16,55 @@
 </template>
 
 <script lang="ts">
-    import {defineComponent, ref, PropType} from 'vue';
-    import axios from 'axios';
+import {defineComponent, ref, PropType, watch} from 'vue';
+import axios from 'axios';
 
-    type CheckFunction = (file: File) => boolean;
+type CheckFunction = (file: File) => boolean;
 
-    export default defineComponent({
-        name: 'Uploader',
-        props: {
-            action: {
-                type: String,
-                require: true
-            },
-            beforeUpload: {
-                type: Function as PropType<CheckFunction>
-            }
+export default defineComponent({
+    name: 'Uploader', props: {
+        action: {
+            type: String, require: true
         },
-        inheritAttrs: false,
-        setup(props, context) {
-            const fileInput = ref<null | HTMLInputElement>(null);
-            const fileStatus = ref<UploadStatus>('ready');
-            const uploadedData = ref();
-            const triggerUpload = () => {
-                if (fileInput.value) {
-                    fileInput.value.click();
+        beforeUpload: {
+            type: Function as PropType<CheckFunction>
+        },
+        uploaded: {
+            type: Object
+        }
+    },
+    inheritAttrs: false,
+    setup(props, context) {
+        console.log(props.uploaded);
+        const fileInput = ref<null | HTMLInputElement>(null);
+        const fileStatus = ref<UploadStatus>(props.uploaded ? 'success' : 'ready');
+        const uploadedData = ref(props.uploaded);
+        //watch必须是一个响应式对象，如果是props就使用函数监控
+        watch(() => props.uploaded, (newValue) => {
+            if (newValue) {
+                fileStatus.value = 'success';
+                uploadedData.value = newValue;
+            }
+        });
+        const triggerUpload = () => {
+            if (fileInput.value) {
+                fileInput.value.click();
+            }
+        };
+        const handleFileChange = (e: Event) => {
+            const currentTarget = e.target as HTMLInputElement;
+            if (currentTarget.files) {
+                const files = Array.from(currentTarget.files);
+                if (props.beforeUpload) {
+                    const result = props.beforeUpload(files[0]);
+                    if (!result) {return;}
                 }
-            };
-            const handleFileChange = (e: Event) => {
-                const currentTarget = e.target as HTMLInputElement;
-
-                if (currentTarget.files) {
-                    const files = Array.from(currentTarget.files);
-                    if (props.beforeUpload) {
-                        const result = props.beforeUpload(files[0]);
-                        if (!result) {return;}
-                    }
-                    fileStatus.value = 'loading';
-                    const formData = new FormData();
-                    formData.append('files', files[0]);
-                    axios.post(props.action!, formData, {
-                        headers: {
-                            'Content-Type': 'multipart/form-data'
-                        }
+                fileStatus.value = 'loading';
+                const formData = new FormData();
+                formData.append('files', files[0]);
+                if (props.action) {
+                    axios.post(props.action, formData, {
+                        headers: {'Content-Type': 'multipart/form-data'}
                     }).then(res => {
                         fileStatus.value = 'success';
                         uploadedData.value = res.data;
@@ -71,10 +78,11 @@
                         }
                     });
                 }
-            };
-            return {fileInput, triggerUpload, fileStatus, handleFileChange, uploadedData};
-        }
-    });
+            }
+        };
+        return {fileInput, triggerUpload, fileStatus, handleFileChange, uploadedData};
+    }
+});
 </script>
 
 <style lang="scss" scoped>

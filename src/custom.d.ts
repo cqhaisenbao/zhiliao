@@ -63,12 +63,6 @@ interface GlobalErrorProps {
     message?: string;
 }
 
-interface ResponseType<P = {}> {
-    code: number;
-    msg: string;
-    data: P;
-}
-
 type TagType = 'input' | 'textarea'
 
 type UploadStatus = 'ready' | 'loading' | 'success' | 'error'
