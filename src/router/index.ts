@@ -43,7 +43,7 @@ const router = createRouter({
         {
             path: '/posts/:id',
             name: 'post',
-            component: PostDetail
+            component: PostDetail,
         }
     ]
 });
@@ -52,7 +52,7 @@ router.beforeEach((to, from, next) => {
     const {requiredLogin, redirectAlreadyLogin} = to.meta;
     if (!user.isLogin) {
         if (token) {
-            axios.defaults.headers.common.Authorization = `Bearer ${ token }`;
+            axios.defaults.headers.common.Authorization = `Bearer ${token}`;
             store.dispatch('fetchCurrentUser').then(() => {
                 if (redirectAlreadyLogin) {
                     next('/');
@@ -79,5 +79,6 @@ router.beforeEach((to, from, next) => {
         }
     }
 });
+
 
 export default router;

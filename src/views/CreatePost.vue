@@ -29,8 +29,8 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, ref, onMounted,watch} from 'vue';
-import {useRouter, useRoute} from 'vue-router';
+import {defineComponent, ref, onMounted} from 'vue';
+import {useRouter, useRoute, onBeforeRouteUpdate} from 'vue-router';
 import {useStore} from 'vuex';
 import ValidateInput from '../components/ValidateInput.vue';
 import ValidateForm from '../components/ValidateForm.vue';
@@ -62,6 +62,7 @@ export default defineComponent({
                 imageId = rawData.data._id;
             }
         };
+        onBeforeRouteUpdate((to, from, next) => next());
         onMounted(() => {
             if (isEditMode) {
                 store.dispatch('fetchPost', route.query.id).then((rawData: ResponseType<PostProps>) => {
