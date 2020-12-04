@@ -19,7 +19,7 @@
     import {useRoute} from 'vue-router';
     import {useStore} from 'vuex';
     import PostList from '@/components/PostList.vue';
-    import {generateFitUrl} from '../helper';
+    import {addColumnAvatar} from '@/helper';
 
     export default defineComponent({
         components: {PostList},
@@ -33,7 +33,7 @@
             });
             const column = computed(() => {
                 const selectColumn = store.getters.getColumnById(currentId) as ColumnProps | undefined;
-                if (selectColumn) {generateFitUrl(selectColumn, 100, 100);}
+                if (selectColumn) {addColumnAvatar(selectColumn, 100, 100);}
                 return selectColumn;
             });
             const list = computed(() => store.getters.getPostByCid(currentId));

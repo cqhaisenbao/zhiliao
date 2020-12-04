@@ -4,6 +4,7 @@ import Home from '../views/Home.vue';
 import Login from '../views/Login.vue';
 import ColumnDetail from '@/views/ColumnDetail.vue';
 import CreatePost from '@/views/CreatePost.vue';
+import PostDetail from '@/views/PostDetail.vue';
 import store from '@/store';
 import Signup from '@/views/Signup.vue';
 
@@ -39,6 +40,11 @@ const router = createRouter({
             name: 'column',
             component: ColumnDetail,
         },
+        {
+            path: '/posts/:id',
+            name: 'post',
+            component: PostDetail
+        }
     ]
 });
 router.beforeEach((to, from, next) => {

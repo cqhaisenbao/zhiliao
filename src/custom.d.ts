@@ -17,9 +17,10 @@ interface PostProps {
     title: string;
     excerpt?: string;
     content?: string;
-    image?: ImageProps;
+    image?: ImageProps | string;
     createdAt?: string;
     column: string;
+    author?: string;
 }
 
 interface ResponseType<P = {}> {
@@ -43,7 +44,9 @@ interface UserProps {
     nickName?: string;
     _id?: string;
     column?: string;
-    email?: string
+    email?: string;
+    avatar?: ImageProps;
+    description?: string;
 }
 
 interface GlobalDataProps {

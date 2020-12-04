@@ -35,6 +35,9 @@ const store = createStore<GlobalDataProps>({
         fetchPosts(state, rawData) {
             state.posts = rawData.data.list;
         },
+        fetchPost(state, rawData) {
+            state.posts = [rawData.data];
+        },
         setLoading(state, status) {
             state.loading = status;
         },
@@ -66,11 +69,17 @@ const store = createStore<GlobalDataProps>({
         fetchPosts({commit}, cid) {
             return getAndCommit(`/columns/${ cid }/posts`, 'fetchPosts', commit);
         },
+        fetchPost({commit}, id) {
+            return getAndCommit(`/posts/${ id }`, 'fetchPost', commit);
+        },
         fetchCurrentUser({commit}) {
             return getAndCommit('/user/current', 'fetchCurrentUser', commit);
         },
         login({commit}, payload) {
             return postAndCommit('/user/login', 'login', commit, payload);
+        },
+        createPost({commit}, payload) {
+            return postAndCommit('/posts', 'createPost', commit, payload);
         },
         loginAndFetch({dispatch}, loginData) {
             return dispatch('login', loginData).then(() => {
@@ -88,6 +97,9 @@ const store = createStore<GlobalDataProps>({
             if (state.posts) {
                 return state.posts.filter((post => post.column === cid));
             }
+        },
+        getCurrentPost: (state) => (id: string) => {
+            return state.posts.find(post => post._id === id);
         }
     }
 
