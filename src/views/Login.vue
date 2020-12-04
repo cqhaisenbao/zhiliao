@@ -42,6 +42,7 @@
                         password: passwordVal.value
                     };
                     store.dispatch('loginAndFetch', payload).then(data => {
+                        console.log(data);
                         createMessage('登录成功 2秒后跳转首页', 'success', 2000);
                         setTimeout(() => {
                             router.push('/');

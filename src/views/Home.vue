@@ -14,12 +14,6 @@
         <button class="btn btn-outline-primary mt-2 mb-5 mx-auto btn-block w-25" @click="loadMorePage">
             加载更多
         </button>
-        <Uploader action="/upload" :beforeUpload="beforeUpload" @file-uploaded="onFileUploaded">
-            <button class="btn btn-primary">点击上传</button>
-            <template #uploaded="dataProps">
-                <img :src="dataProps.uploadedData.data.url" width="500">
-            </template>
-        </Uploader>
     </div>
 </template>
 
@@ -27,8 +21,6 @@
     import {defineComponent, computed, onMounted} from 'vue';
     import {useStore} from 'vuex';
     import ColumnList from '../components/ColumnList.vue';
-    import Uploader from '../components/Uploader.vue';
-    import createMessage from '../components/createMessage';
 
     interface ResponseType<P = {}> {
         code: number;
@@ -38,26 +30,14 @@
 
     export default defineComponent({
         name: 'Home',
-        components: {
-            ColumnList, Uploader
-        },
+        components: {ColumnList},
         setup() {
             const store = useStore<GlobalDataProps>();
             onMounted(() => {
                 store.dispatch('fetchColumns');
             });
             const list = computed(() => store.state.columns);
-            const beforeUpload = (file: File) => {
-                const isJPG = file.type === 'image/jpeg';
-                if (!isJPG) {
-                    createMessage('上传图片只能是 JPG 格式!', 'error', 3000);
-                }
-                return isJPG;
-            };
-            const onFileUploaded = (rawData: ResponseType<ImageProps>) => {
-                createMessage(`上传图片ID ${ rawData.data._id }`, 'success', 3000);
-            };
-            return {list, beforeUpload, onFileUploaded};
+            return {list};
         }
     });
 </script>
