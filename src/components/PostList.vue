@@ -19,7 +19,7 @@
 
 <script lang="ts">
     import {defineComponent, PropType, computed} from 'vue';
-    import {generateFitUrl} from '../helper';
+    import {generateFitUrl} from '@/helper';
 
     export default defineComponent({
         props: {
