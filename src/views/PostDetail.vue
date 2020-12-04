@@ -42,14 +42,14 @@ export default defineComponent({
             }
         });
         const showEditArea = computed(() => {
-            const {isLogin, _id} = store.state.user
+            const {isLogin, _id} = store.state.user;
             if (currentPost.value && currentPost.value.author && isLogin) {
-                const postAuthor = currentPost.value.author as UserProps
-                return postAuthor._id === _id
+                const postAuthor = currentPost.value.author as UserProps;
+                return postAuthor._id === _id;
             } else {
-                return false
+                return false;
             }
-        })
+        });
         const currentImageUrl = computed(() => {
             if (currentPost.value && currentPost.value.image) {
                 const {image} = currentPost.value;

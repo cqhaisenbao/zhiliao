@@ -22,7 +22,8 @@ import axios from 'axios';
 type CheckFunction = (file: File) => boolean;
 
 export default defineComponent({
-    name: 'Uploader', props: {
+    name: 'Uploader',
+    props: {
         action: {
             type: String, require: true
         },
@@ -35,7 +36,6 @@ export default defineComponent({
     },
     inheritAttrs: false,
     setup(props, context) {
-        console.log(props.uploaded);
         const fileInput = ref<null | HTMLInputElement>(null);
         const fileStatus = ref<UploadStatus>(props.uploaded ? 'success' : 'ready');
         const uploadedData = ref(props.uploaded);

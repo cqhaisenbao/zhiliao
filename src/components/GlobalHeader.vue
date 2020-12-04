@@ -25,26 +25,26 @@
 
 <script lang="ts">
 
-    import {defineComponent, computed} from 'vue';
-    import Dropdown from './Dropdown.vue';
-    import {useStore} from 'vuex';
-    import DropdownItem from '@/components/DropdownItem.vue';
-    import router from '@/router';
+import {defineComponent, computed} from 'vue';
+import Dropdown from './Dropdown.vue';
+import {useStore} from 'vuex';
+import DropdownItem from '@/components/DropdownItem.vue';
+import router from '@/router';
 
-    export default defineComponent({
-        name: 'GlobalHeader',
-        components: {Dropdown, DropdownItem},
+export default defineComponent({
+    name: 'GlobalHeader',
+    components: {Dropdown, DropdownItem},
 
-        setup() {
-            const store = useStore();
-            const user = computed(() => store.state.user);
-            const logout = () => {
-                store.commit('logout');
-                router.push('/')
-            };
-            return {user, logout};
-        }
-    });
+    setup() {
+        const store = useStore();
+        const user = computed(() => store.state.user);
+        const logout = () => {
+            store.commit('logout');
+            router.push('/');
+        };
+        return {user, logout};
+    }
+});
 </script>
 
 <style scoped>
