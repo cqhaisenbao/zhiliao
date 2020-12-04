@@ -30,7 +30,6 @@
     import {useStore} from 'vuex';
     import DropdownItem from '@/components/DropdownItem.vue';
     import router from '@/router';
-    // import store from '@/store';
 
     export default defineComponent({
         name: 'GlobalHeader',
@@ -41,6 +40,7 @@
             const user = computed(() => store.state.user);
             const logout = () => {
                 store.commit('logout');
+                router.push('/')
             };
             return {user, logout};
         }
