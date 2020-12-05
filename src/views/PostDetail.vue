@@ -88,9 +88,9 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style>
 @media (max-width: 450px) {
-    .text-muted {
+    .post-detail-page .text-muted {
         display: none
     }
 
@@ -101,14 +101,17 @@ export default defineComponent({
     .post-detail-page {
         overflow: hidden;
     }
-   .myArticle figure{
+
+    .myArticle figure {
         display: none;
     }
-   .myArticle br{
-       display: none;
-   }
-   .myArticle{
-       line-height: 26px;
-   }
+
+    .myArticle br {
+        display: none;
+    }
+
+    .myArticle {
+        line-height: 26px;
+    }
 }
 </style>
