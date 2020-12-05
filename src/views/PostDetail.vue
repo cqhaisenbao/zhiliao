@@ -88,30 +88,28 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style lang="scss">
+@import "~@/assets/style/helper.scss";
+
 @media (max-width: 450px) {
-    .post-detail-page .text-muted {
-        display: none
+    .post-detail-page {
+        overflow: hidden;
+
+        .text-muted {
+            display: none
+        }
     }
 
     #article {
         width: 95% !important;
-    }
 
-    .post-detail-page {
-        overflow: hidden;
-    }
+        .myArticle {
+            line-height: 26px;
 
-    .myArticle figure {
-        display: none;
-    }
+            figure {display: none;}
 
-    .myArticle br {
-        display: none;
-    }
-
-    .myArticle {
-        line-height: 26px;
+            br {display: none;}
+        }
     }
 }
 </style>

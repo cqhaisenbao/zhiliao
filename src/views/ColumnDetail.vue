@@ -42,7 +42,8 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
 .column-info {
     margin-left: 3px;
     margin-right: 3px;

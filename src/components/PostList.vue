@@ -57,7 +57,9 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+@import "~@/assets/style/helper.scss";
+
 .post-list h4 a {
     text-decoration: none;
     color: #1a1a1a;
@@ -72,22 +74,15 @@ export default defineComponent({
     flex-direction: row;
     flex-wrap: nowrap;
     line-height: 1.5rem;
-}
-
-.text {
-    font-size: 15px;
-    height: 6rem;
-    word-break: break-all;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    display: -webkit-box;
-    -webkit-line-clamp: 4;
-    -webkit-box-orient: vertical;
-}
-
-.text-image {
-    height: 6rem;
-    border-radius: 12px;
-    margin-right: 10px;
+    .text{
+        font-size: 15px;
+        height: 6rem;
+        @extend %ell;
+    }
+    .text-image {
+        height: 6rem;
+        border-radius: 12px;
+        margin-right: 10px;
+    }
 }
 </style>

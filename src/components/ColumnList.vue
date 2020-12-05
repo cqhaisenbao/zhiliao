@@ -38,38 +38,20 @@ export default defineComponent({
 });
 </script>
 
-<style scoped>
-.card-body img {
-    width: 50px;
-    height: 50px;
-}
+<style lang="scss" scoped>
+@import "~@/assets/style/helper.scss";
 
-#description {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    display: -moz-box;
-    -moz-line-clamp: 2;
-    -moz-box-orient: vertical;
-    word-wrap: break-word;
-    word-break: break-all;
-    white-space: normal;
-}
+.card-body {
+    img {
+        width: 50px;
+        height: 50px;
+    }
+    h5{
+        @extend %col-h5
 
-h5{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    display: -moz-box;
-    -moz-line-clamp: 1;
-    -moz-box-orient: vertical;
-    word-wrap: break-word;
-    word-break: break-all;
-    white-space: normal;
+    }
+    #description {
+        @extend %col-style
+    }
 }
-
 </style>
