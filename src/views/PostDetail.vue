@@ -88,7 +88,7 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style scoped>
 @media (max-width: 450px) {
     .text-muted {
         display: none
