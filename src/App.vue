@@ -1,9 +1,10 @@
 <template>
-    <div class="container">
-        <global-header></global-header>
-        <loader v-if="isLoading" text="拼命加载中" background="rgba(0,0,0, 0.8)"></loader>
-        <!--key解决编辑文章与修改文章组件复用路由跳转页面不刷新:key="$route.fullPath"-->
-        <router-view/>
+    <div class="layout">
+        <global-header class="nav"/>
+        <div class="container">
+            <loader v-if="isLoading" text="拼命加载中" background="rgba(0,0,0, 0.8)"></loader>
+            <router-view :key="$route.fullPath"/>
+        </div>
         <Footer/>
     </div>
 </template>
@@ -37,5 +38,22 @@ export default defineComponent({
     }
 });
 </script>
+
+<style scoped>
+.layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.container {
+    flex-grow: 1;
+}
+
+.nav {
+    flex-shrink: 0;
+    width: 100%;
+}
+</style>
 
 

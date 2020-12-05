@@ -1,6 +1,6 @@
 <template>
     <div class="row mt-5">
-        <div v-for="column in columnList" :key="column._id" class="col-sm-4 mb-4">
+        <div v-for="column in columnList" :key="column._id" class="col-sm-6 col-md-3 col-xs-1 mb-4">
             <div class="crad h-100 shadow-sm">
                 <div class="card-body text-center">
                     <img :src="column.avatar && column.avatar.fitUrl" alt="column.title" class="rounded-circle border border-light mb-4"/>
