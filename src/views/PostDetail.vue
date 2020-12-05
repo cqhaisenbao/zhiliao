@@ -1,7 +1,6 @@
 <template>
     <div class="post-detail-page">
-        <Modal title="删除文章" :visible="modalIsVisible" @cancel="modalIsVisible = false"
-               @ok="hideAndDelete">
+        <Modal title="删除文章" :visible="modalIsVisible" @cancel="modalIsVisible = false" @ok="hideAndDelete">
             <p>确定要删除这篇文章吗？</p>
         </Modal>
         <article class="w-75 mx-auto mb-5 pb-3" v-if="currentPost">
@@ -53,8 +52,9 @@ export default defineComponent({
         });
         const currentPost = computed<PostProps>(() => store.getters.getCurrentPost(currentId));
         const currentHTML = computed(() => {
-            if (currentPost.value && currentPost.value.content) {
-                return md.render(currentPost.value.content);
+            const {content, isHTML} = currentPost.value;
+            if (currentPost.value && content) {
+                return isHTML ? content : md.render(content);
             }
         });
         const showEditArea = computed(() => {

@@ -21,6 +21,7 @@ interface PostProps {
     createdAt?: string;
     column: string;
     author?: string | UserProps;
+    isHTML?: boolean
 }
 
 interface ResponseType<P = {}> {
