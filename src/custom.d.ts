@@ -54,14 +54,18 @@ interface GlobalDataProps {
     error: GlobalErrorProps
     token: string
     loading: boolean
-    columns: ColumnProps[]
-    posts: PostProps[]
+    columns: ListProps<ColumnProps>
+    posts: ListProps<PostProps>
     user: UserProps;
 }
 
 interface GlobalErrorProps {
     status: boolean;
     message?: string;
+}
+
+interface ListProps<P> {
+    [id: string]: P;
 }
 
 type TagType = 'input' | 'textarea'
