@@ -3,7 +3,7 @@
         <Modal title="删除文章" :visible="modalIsVisible" @cancel="modalIsVisible = false" @ok="hideAndDelete">
             <p>确定要删除这篇文章吗？</p>
         </Modal>
-        <article class="w-75 mx-auto mb-5 pb-3" v-if="currentPost">
+        <article id="article" class="w-75 mx-auto mb-5 pb-3" v-if="currentPost">
             <img :src="currentImageUrl" alt="currentPost.title" class="rounded-lg img-fluid my-4"
                  v-if="currentImageUrl">
             <h2 class="mb-4">{{ currentPost.title }}</h2>
@@ -13,7 +13,7 @@
                 </div>
                 <span class="text-muted col text-right font-italic">发表于：{{ currentPost.createdAt }}</span>
             </div>
-            <div v-html="currentHTML"></div>
+            <div class="myArticle" v-html="currentHTML"></div>
             <div v-if="showEditArea" class="btn-group mt-5">
                 <router-link :to="{name:'create',query:{id:currentPost._id}}" type="button" class="btn btn-success">编辑</router-link>
                 <button type="button" class="btn btn-danger" @click.prevent="modalIsVisible = true">删除</button>
@@ -87,3 +87,28 @@ export default defineComponent({
     }
 });
 </script>
+
+<style>
+@media (max-width: 450px) {
+    .text-muted {
+        display: none
+    }
+
+    #article {
+        width: 95% !important;
+    }
+
+    .post-detail-page {
+        overflow: hidden;
+    }
+   .myArticle figure{
+        display: none;
+    }
+   .myArticle br{
+       display: none;
+   }
+   .myArticle{
+       line-height: 26px;
+   }
+}
+</style>
