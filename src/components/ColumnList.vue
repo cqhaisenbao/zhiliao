@@ -47,11 +47,11 @@ export default defineComponent({
         height: 50px;
     }
     h5{
-        @extend %col-h5
+        @include col-style($line-clamp:1)
 
     }
     #description {
-        @extend %col-style
+        @include col-style
     }
 }
 </style>

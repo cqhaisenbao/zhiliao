@@ -1,39 +1,27 @@
-$font_size_16:16px;
-$height:6rem;
+$font_size_16: 16px;
+$height: 6rem;
 
-%ell{
+%myLine {
   word-break: break-all;
   text-overflow: ellipsis;
   overflow: hidden;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+}
+
+;
+
+%ell {
+  @extend %myLine;
   -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  display: -webkit-box;
+
 }
 
-%col-style{
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+@mixin col-style($line-clamp:2) {
+  @extend %myLine;
+  -webkit-line-clamp: $line-clamp;
   display: -moz-box;
-  -moz-line-clamp: 2;
+  -moz-line-clamp: $line-clamp;
   -moz-box-orient: vertical;
-  word-wrap: break-word;
-  word-break: break-all;
-  white-space: normal;
-}
-
-%col-h5{
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  display: -moz-box;
-  -moz-line-clamp: 1;
-  -moz-box-orient: vertical;
-  word-wrap: break-word;
-  word-break: break-all;
   white-space: normal;
 }

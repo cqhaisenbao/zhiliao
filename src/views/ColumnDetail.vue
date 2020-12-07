@@ -1,5 +1,5 @@
 <template>
-    <div class="column-detail-page w-95  mx-auto">
+    <div class="column-detail-page w-75  mx-auto">
         <div class="column-info row mb-4 border-bottom pb-1 pb-sm-4  align-items-center" v-if="column">
             <div class="col-3 text-center">
                 <img :src="column.avatar && column.avatar.fitUrl" :alt="column.title"
@@ -47,5 +47,11 @@ export default defineComponent({
 .column-info {
     margin-left: 3px;
     margin-right: 3px;
+}
+
+@media (max-width: 450px) {
+    .column-detail-page {
+        width: 95% !important
+    }
 }
 </style>
