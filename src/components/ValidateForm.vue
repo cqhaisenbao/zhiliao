@@ -10,38 +10,34 @@
 </template>
 
 <script lang="ts">
-    import {defineComponent, onUnmounted} from 'vue';
-    import mitt from 'mitt';
+import {defineComponent, onUnmounted} from 'vue';
+import mitt from 'mitt';
 
-    type ValidateFunc = () => boolean
+type ValidateFunc = () => boolean
 
-    export const emitter = mitt();
-    export default defineComponent({
-        name: 'ValidateForm',
-        // emits: ['form-submit'],
-        setup(props, context) {
-            let funcArr: ValidateFunc[] = [];
-            const submitForm = () => {
-                const result = funcArr.map(func => func()).every(result => result);
-                context.emit('form-submit', result);
-            };
-            const callback = (func: ValidateFunc) => {
-                funcArr.push(func);
-            };
-            emitter.on('form-item-created', callback);
-            onUnmounted(() => {
-                emitter.off('form-item-created', callback);
-                funcArr = [];
-            });
-            return {submitForm};
-        },
-    });
+export const emitter = mitt();
+export default defineComponent({
+    name: 'ValidateForm',
+    emits: ['form-submit'],
+    setup(props, context) {
+        let funcArr: ValidateFunc[] = [];
+        const submitForm = () => {
+            const result = funcArr.map(func => func()).every(result => result);
+            context.emit('form-submit', result);
+        };
+        const callback = (func: ValidateFunc) => {
+            funcArr.push(func);
+        };
+        emitter.on('form-item-created', callback);
+        onUnmounted(() => {
+            emitter.off('form-item-created', callback);
+            funcArr = [];
+        });
+        return {submitForm};
+    },
+});
 </script>
 
-<style scoped>
-.submit-area{
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-}
+<style lang="scss" scoped>
+
 </style>

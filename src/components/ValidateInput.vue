@@ -47,6 +47,9 @@ export default defineComponent({
                         case 'required':
                             passed = (inputRef.val.trim() !== '');
                             break;
+                        case 'length':
+                            passed = (inputRef.val.length >= 6);
+                            break;
                         case 'email':
                             passed = emailReg.test(inputRef.val);
                             break;

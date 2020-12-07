@@ -23,7 +23,9 @@ import {useStore} from 'vuex';
 import ColumnList from '../components/ColumnList.vue';
 
 export default defineComponent({
-    name: 'Home', components: {ColumnList}, setup() {
+    name: 'Home',
+    components: {ColumnList},
+    setup() {
         const store = useStore<GlobalDataProps>();
         onMounted(() => {
             store.dispatch('fetchColumns');

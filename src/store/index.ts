@@ -109,11 +109,11 @@ const store = createStore<GlobalDataProps>({
         },
         getPostByCid: (state) => (cid: string) => {
             if (state.posts) {
-                return objToArr(state.posts).filter(post => post.column === cid)
+                return objToArr(state.posts).filter(post => post.column === cid);
             }
         },
         getCurrentPost: (state) => (id: string) => {
-            return state.posts[id]
+            return state.posts[id];
         }
     }
 

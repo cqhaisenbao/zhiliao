@@ -20,68 +20,68 @@
                                 v-model="formData.repeatPassword"/>
             </div>
             <template #submit>
-                <button type="submit" class="btn btn-primary btn-block btn-large">注册新用户</button>
+                <button type="submit" class="w-100 btn btn-primary btn-block btn-large">注册新用户</button>
             </template>
         </validate-form>
     </div>
 </template>
 
 <script lang="ts">
-    import {defineComponent, reactive} from 'vue';
-    import {useRouter} from 'vue-router';
-    import {useStore} from 'vuex';
-    import axios from 'axios';
-    import ValidateInput from '../components/ValidateInput.vue';
-    import ValidateForm from '../components/ValidateForm.vue';
-    import createMessage from '../components/createMessage';
-    import {emailRules, nameRules, passwordRules} from '@/rules/rules';
+import {defineComponent, reactive} from 'vue';
+import {useRouter} from 'vue-router';
+import {useStore} from 'vuex';
+import axios from 'axios';
+import ValidateInput from '../components/ValidateInput.vue';
+import ValidateForm from '../components/ValidateForm.vue';
+import createMessage from '../components/createMessage';
+import {emailRules, nameRules, passwordRules} from '@/rules/rules';
 
-    export default defineComponent({
-        name: 'Signup',
-        components: {ValidateInput, ValidateForm},
-        setup() {
-            const formData = reactive({
-                email: '',
-                nickName: '',
-                password: '',
-                repeatPassword: ''
-            });
-            const router = useRouter();
-            const store = useStore<GlobalDataProps>();
+export default defineComponent({
+    name: 'Signup',
+    components: {ValidateInput, ValidateForm},
+    setup() {
+        const formData = reactive({
+            email: '',
+            nickName: '',
+            password: '',
+            repeatPassword: ''
+        });
+        const router = useRouter();
+        const store = useStore<GlobalDataProps>();
 
-            const repeatPasswordRules: RulesProp = [
-                {type: 'required', message: '重复密码不能为空'},
-                {
-                    type: 'custom',
-                    validator: () => {return formData.password === formData.repeatPassword;},
-                    message: '两次输入的密码不相同'
-                },
-            ];
-            const onFormSubmit = (result: boolean) => {
-                if (result) {
-                    const payload = {
-                        email: formData.email,
-                        password: formData.password,
-                        nickName: formData.nickName
-                    };
-                    axios.post('/users/', payload).then(data => {
-                        store.dispatch('loginAndFetch', payload);
-                        createMessage('注册成功 正在跳转首页', 'success', 3000);
-                        setTimeout(() => {
-                            router.push('/login');
-                        }, 3000);
-                    }).catch(e => {
-                        console.log(e);
-                    });
-                }
-            };
-            return {emailRules, nameRules, passwordRules, repeatPasswordRules, onFormSubmit, formData};
-        }
-    });
+        const repeatPasswordRules: RulesProp = [
+            {type: 'required', message: '重复密码不能为空'},
+            {
+                type: 'custom',
+                validator: () => {return formData.password === formData.repeatPassword;},
+                message: '两次输入的密码不相同'
+            },
+        ];
+        const onFormSubmit = (result: boolean) => {
+            if (result) {
+                const payload = {
+                    email: formData.email,
+                    password: formData.password,
+                    nickName: formData.nickName
+                };
+                axios.post('/users/', payload).then(data => {
+                    store.dispatch('loginAndFetch', payload);
+                    createMessage('注册成功 正在跳转首页', 'success', 3000);
+                    setTimeout(() => {
+                        router.push('/login');
+                    }, 3000);
+                }).catch(e => {
+                    console.log(e);
+                });
+            }
+        };
+        return {emailRules, nameRules, passwordRules, repeatPasswordRules, onFormSubmit, formData};
+    }
+});
 </script>
 
 <style>
-    .w-330 {
-        max-width: 330px;
-    }
+.w-330 {
+    max-width: 330px;
+}
 </style>

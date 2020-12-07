@@ -15,7 +15,8 @@ export const emailRules: RulesProp = [
 export const emailReg = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 export const passwordRules: RulesProp = [
-    {type: 'required', message: '密码不能为空'}
+    {type: 'required', message: '密码不能为空'},
+    {type: 'length', message: '密码不能少于6位数'}
 ];
 
 export const nameRules: RulesProp = [

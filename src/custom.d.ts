@@ -35,7 +35,7 @@ type RulesProp = RuleProp[]
 type MessageType = 'success' | 'error' | 'default'
 
 interface RuleProp {
-    type: 'required' | 'email' | 'password' | 'custom';
+    type: 'required' | 'email' | 'password' | 'custom' | 'length';
     message: string;
     validator?: () => boolean
 }
