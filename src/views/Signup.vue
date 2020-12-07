@@ -66,10 +66,10 @@ export default defineComponent({
                 };
                 axios.post('/users/', payload).then(data => {
                     store.dispatch('loginAndFetch', payload);
-                    createMessage('注册成功 正在跳转首页', 'success', 3000);
+                    createMessage('注册成功 正在跳转首页', 'success', 2000);
                     setTimeout(() => {
                         router.push('/login');
-                    }, 3000);
+                    }, 2000);
                 }).catch(e => {
                     console.log(e);
                 });
