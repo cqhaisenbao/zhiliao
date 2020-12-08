@@ -27,6 +27,9 @@ const store = createStore<GlobalDataProps>({
         fetchColumn(state, rawData) {
             state.columns[rawData.data._id] = rawData.data;
         },
+        updateColumn(state, {data}) {
+            state.columns[data._id] = data;
+        },
         fetchPosts(state, rawData) {
             state.posts = rawData.data.list;
         },
@@ -38,6 +41,9 @@ const store = createStore<GlobalDataProps>({
         },
         updatePost(state, {data}) {
             state.posts[data._id] = data;
+        },
+        updateUser(state, {data}) {
+            state.user = {isLogin: true, ...data};
         },
         setLoading(state, status) {
             state.loading = status;
@@ -91,6 +97,12 @@ const store = createStore<GlobalDataProps>({
         },
         deletePost({commit}, id) {
             return asyncAndCommit(`/posts/${id}`, 'deletePost', commit, {method: 'delete'});
+        },
+        updateColumn({commit}, {id, payload}) {
+            return asyncAndCommit(`/columns/${id}`, 'updateColumn', commit, {method: 'patch', data: payload});
+        },
+        updateUser({commit}, {id, payload}) {
+            return asyncAndCommit(`/user/${id}`, 'updateUser', commit, {method: 'patch', data: payload});
         },
         loginAndFetch({dispatch}, loginData) {
             return dispatch('login', loginData).then(() => {

@@ -39,7 +39,7 @@ export default defineComponent({
         const fileInput = ref<null | HTMLInputElement>(null);
         const fileStatus = ref<UploadStatus>(props.uploaded ? 'success' : 'ready');
         const uploadedData = ref(props.uploaded);
-        //watch必须是一个响应式对象，如果是props就使用函数监控
+        // watch必须是一个响应式对象，如果是props就使用函数监控
         watch(() => props.uploaded, (newValue) => {
             if (newValue) {
                 fileStatus.value = 'success';

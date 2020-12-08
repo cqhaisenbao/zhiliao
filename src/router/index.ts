@@ -7,6 +7,7 @@ import CreatePost from '@/views/CreatePost.vue';
 import PostDetail from '@/views/PostDetail.vue';
 import store from '@/store';
 import Signup from '@/views/Signup.vue';
+import EditProfile from "@/views/EditProfile.vue";
 
 const routerHistory = createWebHistory();
 const router = createRouter({
@@ -44,6 +45,12 @@ const router = createRouter({
             path: '/posts/:id',
             name: 'post',
             component: PostDetail,
+        },
+        {
+            path: '/user/:id',
+            name: 'editUser',
+            component: EditProfile,
+            meta: {requiredLogin: true}
         },
     ]
 });
