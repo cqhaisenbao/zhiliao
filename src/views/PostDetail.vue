@@ -15,7 +15,9 @@
             </div>
             <div class="myArticle" v-html="currentHTML"></div>
             <div v-if="showEditArea" class="btn-group mt-5">
-                <router-link :to="{name:'create',query:{id:currentPost._id}}" type="button" class="btn btn-success">编辑</router-link>
+                <button type="button" class="btn btn-success">
+                    <router-link :to="{name:'create',query:{id:currentPost._id}}">编辑</router-link>
+                </button>
                 <button type="button" class="btn btn-danger" @click.prevent="modalIsVisible = true">删除</button>
             </div>
         </article>
@@ -90,7 +92,12 @@ export default defineComponent({
 
 <style lang="scss">
 @import "~@/assets/style/helper.scss";
-
+.btn-success{
+    a{
+        color: #ffffff;
+        text-decoration: none;
+    }
+}
 @media (max-width: 450px) {
     .post-detail-page {
         overflow: hidden;
@@ -111,5 +118,6 @@ export default defineComponent({
             br {display: none;}
         }
     }
+
 }
 </style>

@@ -22,7 +22,7 @@
                 <validate-input rows="10" tag="textarea" placeholder="请输入文章详情" :rules="contentRules" v-model="contentVal"/>
             </div>
             <template #submit>
-                <button class="w-100 btn btn-primary btn-large">{{ isEditMode ? '更新文章' : '发表文章' }}</button>
+                <button class="btn btn-primary btn-large">{{ isEditMode ? '更新文章' : '发表文章' }}</button>
             </template>
         </validate-form>
     </div>
@@ -46,7 +46,6 @@ interface ResponseType<P = {}> {
 }
 
 export default defineComponent({
-    name: 'Login',
     components: {ValidateInput, ValidateForm, Uploader},
     setup() {
         const uploadedData = ref();
@@ -120,7 +119,7 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style lang="scss">
 .create-post-page .file-upload-container {
     height: 200px;
     cursor: pointer;
