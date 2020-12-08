@@ -2,7 +2,7 @@
     <div class="column-detail-page w-75  mx-auto">
         <div class="column-info row mb-4 border-bottom pb-1 pb-sm-4  align-items-center" v-if="column">
             <div class="col-3 text-center">
-                <img :src="column.avatar && column.avatar.fitUrl" :alt="column.title"
+                <img :src="column.avatar && column.avatar.url + `?x-oss-process=image/resize,m_fill,h_100,w_100` " :alt="column.title"
                      class="rounded-circle border w-100">
             </div>
             <div class="col-9">
