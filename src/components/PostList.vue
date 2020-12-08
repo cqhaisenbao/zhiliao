@@ -63,10 +63,9 @@ export default defineComponent({
 .post-list h4 a {
     text-decoration: none;
     color: #1a1a1a;
-}
 
-.post-list h4 a:hover {
-    color: #0d6efd;
+    &:hover { color: #0d6efd;
+    }
 }
 
 .textWrapper {
@@ -74,11 +73,13 @@ export default defineComponent({
     flex-direction: row;
     flex-wrap: nowrap;
     line-height: 1.5rem;
-    .text{
+
+    .text {
         font-size: 15px;
         height: 6rem;
         @extend %ell;
     }
+
     .text-image {
         height: 6rem;
         border-radius: 12px;

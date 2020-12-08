@@ -22,7 +22,8 @@ import PostList from '@/components/PostList.vue';
 import {addColumnAvatar} from '@/helper';
 
 export default defineComponent({
-    components: {PostList}, name: 'ColumnDetail', setup() {
+    components: {PostList},
+    setup() {
         const store = useStore<GlobalDataProps>();
         const currentId = useRoute().params.id;
         onMounted(() => {

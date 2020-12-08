@@ -22,7 +22,7 @@
                 <validate-input rows="10" tag="textarea" placeholder="请输入文章详情" :rules="contentRules" v-model="contentVal"/>
             </div>
             <template #submit>
-                <button class="btn btn-primary btn-large">{{ isEditMode ? '更新文章' : '发表文章' }}</button>
+                <button class="w-100 btn btn-primary btn-large">{{ isEditMode ? '更新文章' : '发表文章' }}</button>
             </template>
         </validate-form>
     </div>
@@ -30,7 +30,7 @@
 
 <script lang="ts">
 import {defineComponent, ref, onMounted} from 'vue';
-import {useRouter, useRoute, onBeforeRouteUpdate} from 'vue-router';
+import {useRouter, useRoute} from 'vue-router';
 import {useStore} from 'vuex';
 import ValidateInput from '../components/ValidateInput.vue';
 import ValidateForm from '../components/ValidateForm.vue';
@@ -62,7 +62,6 @@ export default defineComponent({
                 imageId = rawData.data._id;
             }
         };
-        onBeforeRouteUpdate((to, from, next) => next());
         onMounted(() => {
             if (isEditMode) {
                 store.dispatch('fetchPost', route.query.id).then((rawData: ResponseType<PostProps>) => {

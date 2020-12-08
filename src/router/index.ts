@@ -44,7 +44,7 @@ const router = createRouter({
             path: '/posts/:id',
             name: 'post',
             component: PostDetail,
-        }
+        },
     ]
 });
 router.beforeEach((to, from, next) => {
@@ -79,6 +79,5 @@ router.beforeEach((to, from, next) => {
         }
     }
 });
-
 
 export default router;
