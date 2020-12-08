@@ -1,10 +1,12 @@
 <template>
     <form class="validata-form-container">
         <slot></slot>
-        <div class="submit-area" @click.prevent="submitForm">
-            <slot name="submit">
-                <button type="submit" class="btn btn-primary">提交</button>
-            </slot>
+        <div class="submitWrapper">
+            <div class="submit-area" @click.prevent="submitForm">
+                <slot name="submit">
+                    <button type="submit" class="btn btn-primary">提交</button>
+                </slot>
+            </div>
         </div>
     </form>
 </template>
@@ -39,5 +41,12 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.submitWrapper {
+    display: flex;
+    justify-content: center;
 
+    .submit-area {
+        display: inline-block;
+    }
+}
 </style>

@@ -80,8 +80,12 @@ export default defineComponent({
 });
 </script>
 
-<style>
+<style lang="scss" scoped>
 .w-330 {
     max-width: 330px;
+}
+
+.signup-page ::v-deep(div) {
+    width: 100%;
 }
 </style>

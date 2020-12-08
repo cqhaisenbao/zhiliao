@@ -11,7 +11,7 @@
                 <validate-input type="password" placeholder="请输入密码" :rules="passwordRules" v-model="passwordVal"/>
             </div>
             <template #submit>
-                <button type="submit" class="w-100  btn btn-primary btn-block btn-large">登录</button>
+                <button id="loginBtn" type="submit" class="w-100  btn btn-primary btn-block btn-large">登录</button>
             </template>
         </validate-form>
     </div>
@@ -51,3 +51,13 @@ export default defineComponent({
     }
 });
 </script>
+
+<style lang="scss" scoped>
+.w-330 {
+    max-width: 330px;
+}
+
+.login-page ::v-deep(div) {
+    width: 100%;
+}
+</style>

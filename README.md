@@ -1,24 +1,18 @@
-# zhiliao
+# 知了专栏——仿知乎专栏
 
-## Project setup
-```
-yarn install
-```
+### 技术栈
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
++ Vue
+   + 新版composition API 编写
+   + Ref 和 Reactive
+   + watch 和 computed
+   + 生命周期、自定义函数 Hooks
+   + Teleport 和 Suspense
++ Vuex、Vue-Router全家桶
++ TypeScript
++ Axios
++ Swagger 在线调试异步请求
++ JWT权限验证
++ Bootstrap框架
 
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+   
