@@ -45,7 +45,7 @@ export function beforeUploadCheck(file: File, condition: CheckCondition) {
 }
 
 export const commonUploadCheck = (file: File) => {
-    const result = beforeUploadCheck(file, {format: ['image/jpeg', 'image/png'], size: 1});
+    const result = beforeUploadCheck(file, {format: ['image/jpeg', 'image/png','image/jpg'], size: 1});
     const {passed, error} = result;
     if (error === 'format') {
         createMessage('上传图片只能是 JPG/PNG 格式!', 'error', 2000);
