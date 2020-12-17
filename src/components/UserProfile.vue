@@ -1,7 +1,7 @@
 <template>
     <div class="user-profile-component">
         <div class="d-flex align-items-center">
-            <img :src="user.avatar.url+ `?x-oss-process=image/resize,m_fill,h_100,w_100`" class="rounded-circle img-thumbnail">
+            <img :src="user.avatar&&user.avatar.url+ `?x-oss-process=image/resize,m_fill,h_100,w_100` || fitUrl" class="rounded-circle img-thumbnail">
             <div class="detail ml-2">
                 <h6 class="d-block mb-0">{{ user.nickName }}</h6>
                 <span class="xxx">{{ user.description }}</span>
@@ -11,7 +11,8 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, PropType} from 'vue';
+import {defineComponent, PropType, computed} from 'vue';
+import {addColumnAvatar} from '@/helper';
 
 export default defineComponent({
     props: {
@@ -19,6 +20,16 @@ export default defineComponent({
             type: Object as PropType<UserProps>,
             required: true
         }
+    },
+    setup(props) {
+        const fitUrl = computed(() => {
+            addColumnAvatar(props.user, 50, 50);
+            const {avatar} = props.user;
+            return avatar && avatar.fitUrl;
+        });
+        return {
+            fitUrl
+        };
     }
 });
 </script>

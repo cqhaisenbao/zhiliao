@@ -15,7 +15,7 @@ export function addColumnAvatar(data: ColumnProps | UserProps, width: number, he
     } else {
         const parseCol = data as ColumnProps;
         data.avatar = {
-            fitUrl: require(parseCol.title ? '@/assets/man.png' : '@/assets/man.png')
+            url: require(parseCol.title ? '@/assets/man.png' : '@/assets/user.png')
         };
     }
 }
@@ -49,11 +49,11 @@ export const commonUploadCheck = (file: File) => {
     const {passed, error} = result;
     if (error === 'format') {
         createMessage('上传图片只能是 JPG/PNG 格式!', 'error', 2000);
-    }
-    if (error === 'size') {
+    }else if (error === 'size') {
         createMessage('上传图片大小不能超过 1Mb', 'error', 2000);
-    }
+    }else{
     return passed;
+    }
 };
 
 export const arrToObj = <T extends { _id?: string }>(arr: Array<T>) => {

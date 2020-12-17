@@ -44,6 +44,7 @@ export default defineComponent({
 .submitWrapper {
     display: flex;
     justify-content: center;
+    margin-bottom: 20px;
 
     .submit-area {
         display: inline-block;

@@ -19,7 +19,7 @@
         </uploader>
         <validate-form ref="formRef" @form-submit="onFormSubmit">
             <validate-input :rules="titleRules" placeholder="请输入名称" v-model="nameValue" type="text"/>
-            <validate-input :rules="contentRules" placeholder="请输入简介信息" v-model="descValue" rows="5" tag="textarea"/>
+            <validate-input placeholder="请输入简介信息" v-model="descValue" rows="5" tag="textarea"/>
             <template #submit>
                 <button class="btn btn-primary btn-large">提交修改</button>
             </template>

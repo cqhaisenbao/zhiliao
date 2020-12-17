@@ -13,7 +13,6 @@
         </section>
         <h4 class="font-weight-bold text-center">发现精彩</h4>
         <column-list :list="list"></column-list>
-        <button class="btn btn-outline-primary">加载更多</button>
     </div>
 </template>
 
