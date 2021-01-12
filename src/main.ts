@@ -8,9 +8,9 @@ axios.defaults.baseURL = 'http://apis.imooc.com/api/';
 axios.interceptors.request.use(config => {
     store.commit('setLoading', true);
     store.commit('setError', {status: false, message: ''});
-    config.params = {...config.params, icode: 'CD1DF9C24BFE7760'};
+    config.params = {...config.params, icode: 'B4B0F937CB01BD6F'};
     if (config.data instanceof FormData) {
-        config.data.append('icode', 'CD1DF9C24BFE7760');
+        config.data.append('icode', 'B4B0F937CB01BD6F');
     } else {
         config.data = {...config.data, icode: 'B4B0F937CB01BD6F'};
     }
